@@ -150,3 +150,13 @@ if numero_jogadores not in range(1, 4):
 
         numero_jogadores = int(input('\nInsira o número de adversários (1-3): '))
 
+
+print('\n')
+
+time.sleep(2)
+
+numero_jogadores+=1
+
+inicio1 = inicia_jogo(numero_jogadores, pecas_iniciais)
+
+jogador_inicial = quem_comeca(inicio1, numero_jogadores)
