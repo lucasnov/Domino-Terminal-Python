@@ -116,3 +116,18 @@ def quem_comeca(dic, n):
                     return ii
             ii+=1
         i-=1
+
+#código cores
+#\033[1:31:40m vermelho fundo branco
+
+
+#inicio do jogo
+time.sleep(2)
+
+print('\n')
+
+time.sleep(2)
+
+print('\n\033[1;36;47m------- O INCRÍVEL DOMINÓ -------\033[m')
+
+print('\n')
