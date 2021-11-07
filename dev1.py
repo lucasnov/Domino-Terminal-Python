@@ -1,2 +1,0 @@
-
-print('Volta amor')

@@ -1,3 +1,6 @@
+import time
+
+
 #função que cria peças
 def cria_pecas():
     pecas = []
