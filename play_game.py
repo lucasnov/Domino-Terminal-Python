@@ -160,3 +160,75 @@ numero_jogadores+=1
 inicio1 = inicia_jogo(numero_jogadores, pecas_iniciais)
 
 jogador_inicial = quem_comeca(inicio1, numero_jogadores)
+
+print('-------- O JOGO COMEÇOU! --------')
+
+time.sleep(2)
+
+#Primeira jogada
+if jogador_inicial==0:
+    print('\nVocê começa!')
+
+    time.sleep(2)
+
+    print('\nSuas peças: {}'.format(inicio1['jogadores'][jogador_inicial]))
+
+    time.sleep(2)
+
+    peca_a_ser_jogada = int(input('\nEscolha a peça a ser jogada: '))
+
+    time.sleep(2)
+    
+    
+
+    possiveis = posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][jogador_inicial])
+    
+    if peca_a_ser_jogada not in possiveis:
+        while peca_a_ser_jogada not in possiveis:
+            peca_a_ser_jogada = int(input('\nEscolha entre as peças: '.format(possiveis)))
+
+            time.sleep(2)
+            
+    print('\nVocê jogou a peça {}'.format(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada]))
+
+    time.sleep(2)
+    
+    inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada], inicio1['mesa'])
+
+    inicio1['jogadores'][jogador_inicial].remove(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada])
+
+    time.sleep(2)
+
+    print('\n-----------------------------------------------')
+
+    print('Mesa ---> {}'.format(inicio1['mesa']))  
+
+    print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+
+    print('-----------------------------------------------')
+
+
+else:
+    print('\nJogador {} começa!'.format(jogador_inicial))
+
+    time.sleep(2)
+
+    peca_a_ser_jogada = random.choice(posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][jogador_inicial]))
+
+    inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada], inicio1['mesa'])
+
+    print('\nJogador {} jogou a peça {}'.format(jogador_inicial, inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada]))
+
+    time.sleep(2)
+
+    inicio1['jogadores'][jogador_inicial].remove(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada])
+
+    print('\n-----------------------------------------------')
+
+    print('Mesa ---> {}'.format(inicio1['mesa']))
+
+    print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+
+    print('------------------------------------------------')
+
+    time.sleep(2)
