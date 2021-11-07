@@ -139,3 +139,14 @@ print('\n-------- VAMOS COMEÇAR! --------')
 time.sleep(2)
 
 pecas_iniciais = cria_pecas()
+
+numero_jogadores = int(input('\nInsira o número de adversários (1-3): '))
+
+if numero_jogadores not in range(1, 4):
+
+    while numero_jogadores not in range(1, 4):
+
+        print('\nNúmero de jogadores inválido!')
+
+        numero_jogadores = int(input('\nInsira o número de adversários (1-3): '))
+
