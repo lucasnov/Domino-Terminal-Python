@@ -131,3 +131,11 @@ time.sleep(2)
 print('\n\033[1;36;47m------- O INCRÍVEL DOMINÓ -------\033[m')
 
 print('\n')
+
+time.sleep(2)
+
+print('\n-------- VAMOS COMEÇAR! --------')
+
+time.sleep(2)
+
+pecas_iniciais = cria_pecas()
