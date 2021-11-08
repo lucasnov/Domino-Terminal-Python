@@ -128,13 +128,13 @@ print('\n')
 
 time.sleep(2)
 
-print('\n\033[1;36;47m------- O INCRÍVEL DOMINÓ -------\033[m')
+print('\n\033[1;31;47m------- O INCRÍVEL DOMINÓ -------\033[m')
 
 print('\n')
 
 time.sleep(2)
 
-print('\n-------- VAMOS COMEÇAR! --------')
+print('\n\033[1;31;47m-------- VAMOS COMEÇAR! --------\033[m')
 
 time.sleep(2)
 
@@ -161,7 +161,7 @@ inicio1 = inicia_jogo(numero_jogadores, pecas_iniciais)
 
 jogador_inicial = quem_comeca(inicio1, numero_jogadores)
 
-print('-------- O JOGO COMEÇOU! --------')
+print('\033[1;31;47m-------- O JOGO COMEÇOU! --------\033[m')
 
 time.sleep(2)
 
@@ -175,7 +175,7 @@ if jogador_inicial==0:
 
     time.sleep(2)
 
-    peca_a_ser_jogada = int(input('\nEscolha a peça a ser jogada: '))
+    peca_a_ser_jogada = int(input('\nEscolha a peça a ser jogada: '))-1
 
     time.sleep(2)
     
@@ -185,7 +185,7 @@ if jogador_inicial==0:
     
     if peca_a_ser_jogada not in possiveis:
         while peca_a_ser_jogada not in possiveis:
-            peca_a_ser_jogada = int(input('\nEscolha entre as peças: '.format(possiveis)))
+            peca_a_ser_jogada = int(input('\nEscolha entre as peças: '.format(possiveis)))-1
 
             time.sleep(2)
             
@@ -324,7 +324,7 @@ while i<numero_jogadores:
 
 
         else:
-            peca_a_ser_jogada = int(input('\nEscolha a peça a ser jogada: '))
+            peca_a_ser_jogada = int(input('\nEscolha a peça a ser jogada: '))-1
 
             if peca_a_ser_jogada not in possiveis:
                 while peca_a_ser_jogada not in possiveis:
@@ -332,7 +332,7 @@ while i<numero_jogadores:
 
                     time.sleep(2)
 
-                    peca_a_ser_jogada = int(input('\nEscolha entre as peças {}: '.format(possiveis)))
+                    peca_a_ser_jogada = int(input('\nEscolha entre as peças {}: '.format(possiveis)))-1
 
                     time.sleep(2)
                 
@@ -478,11 +478,11 @@ while i<numero_jogadores:
     else:
         i+=1
 
-    print('\nFim de Jogo!')
+print('\n\033[1;31;47mFim de Jogo!\033[m')
 
-    time.sleep(2)
+time.sleep(2)
 
-    if empatou==True:
+if empatou==True:
 
     print('\nO jogo trancou! Temos um Empate!')
 
@@ -496,7 +496,7 @@ while i<numero_jogadores:
             menor = soma
             vencedor = iii
         iii+=1
-
+    
     if vencedor==0:
         
         print('\nParabéns! Você venceu por ter a menor soma de pontos nas peças!')
@@ -509,13 +509,10 @@ while i<numero_jogadores:
 
         time.sleep(2)
 
-
-    else:
+else:
     if ganhador==0:
 
         print('\nParabéns! Você venceu!')
 
     else:
         print('\nNão foi dessa vez! O jogador {} é o vencedor!'.format(ganhador))
-
-
