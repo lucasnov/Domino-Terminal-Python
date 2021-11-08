@@ -357,4 +357,165 @@ while i<numero_jogadores:
         print('-----------------------------------------------')
 
         time.sleep(2)
-    
+
+
+    else: #jogador bot
+        print('\nVez do jogador {} -- {} peças'.format(i, len(inicio1['jogadores'][i])))
+
+        time.sleep(2)
+
+        possiveis = posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][i])
+
+        if len(possiveis)==0:
+
+            print('\nJogador {} não possui peças para jogar!'.format(i))
+
+            time.sleep(2)
+
+            if len(inicio1['monte'])!=0:
+
+                print('\nJogador {} pegou uma peça do monte!'.format(i))
+
+                time.sleep(2)
+                
+                pegou_do_monte = random.choice(inicio1['monte'])
+
+                inicio1['jogadores'][i].append(pegou_do_monte)
+
+                inicio1['monte'].remove(pegou_do_monte)
+
+                possiveis = posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][i])
+
+                if len(possiveis)==0:
+
+                    if len(inicio1['monte'])==0:
+                        
+                        passadas[i]+=1
+                    
+                    print('\nJogador {} passou!'.format(i))
+                    
+                    time.sleep(2)
+
+                else:
+
+                    print('\nJogador {} jogará a peça que pegou do monte!'.format(i))
+
+                    time.sleep(2)
+
+                    inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][i][-1], inicio1['mesa'])
+
+                    print('\nJogador {} jogou a peça {}'.format(i, pegou_do_monte ))
+
+                    time.sleep(2)
+
+                    inicio1['jogadores'][i].remove(inicio1['jogadores'][i][-1])
+
+                    passadas[i] = 0
+
+            else:
+
+                if len(inicio1['monte'])==0:
+                    
+                    passadas[i]+=1
+
+                print('\nNão há peças no monte!')
+
+                time.sleep(2)
+
+                print('\nJogador {} passou!'.format(i))
+                    
+                time.sleep(2)
+
+
+        else: 
+
+            peca_a_ser_jogada = random.choice(possiveis)
+
+            inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][i][peca_a_ser_jogada], inicio1['mesa'])
+
+            print('\nJogador {} jogou a peça {}'.format(i, inicio1['jogadores'][i][peca_a_ser_jogada]))
+
+            time.sleep(2)
+
+            inicio1['jogadores'][i].remove(inicio1['jogadores'][i][peca_a_ser_jogada])
+
+            passadas[i] = 0
+
+        
+        time.sleep(2)
+
+        print('\n-----------------------------------------------')
+
+        print('Mesa ---> {}'.format(inicio1['mesa']))  
+
+        print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+
+        print('-----------------------------------------------')
+
+        time.sleep(2)
+
+    jogo_continua = verifica_ganhador(inicio1['jogadores'])
+
+    if jogo_continua != -1:
+        ganhador = i
+        break
+
+    if len(inicio1['monte'])==0:
+        ii=0
+        while ii<numero_jogadores:
+            if passadas[ii]==1:
+                empatou = True
+            else:
+                empatou = False
+                break
+            ii+=1
+
+    if empatou==True:
+        break
+
+    if i==numero_jogadores-1:
+        i=0
+    else:
+        i+=1
+
+    print('\nFim de Jogo!')
+
+    time.sleep(2)
+
+    if empatou==True:
+
+    print('\nO jogo trancou! Temos um Empate!')
+
+    time.sleep(2)
+
+    iii=0
+    menor = 100000
+    while iii<numero_jogadores:
+        soma = soma_pecas(inicio1['jogadores'][iii])
+        if soma<menor:
+            menor = soma
+            vencedor = iii
+        iii+=1
+
+    if vencedor==0:
+        
+        print('\nParabéns! Você venceu por ter a menor soma de pontos nas peças!')
+
+        time.sleep(2)
+
+    else:
+
+        print('\nNão foi dessa vez! Jogador {} venceu por ter a menor soma de pontos nas peças!'.format(vencedor))
+
+        time.sleep(2)
+
+
+    else:
+    if ganhador==0:
+
+        print('\nParabéns! Você venceu!')
+
+    else:
+        print('\nNão foi dessa vez! O jogador {} é o vencedor!'.format(ganhador))
+
+
