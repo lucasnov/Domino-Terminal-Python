@@ -117,6 +117,59 @@ def quem_comeca(dic, n):
             ii+=1
         i-=1
 
+
+def formatador(lista):
+
+    print('\n')
+
+    for peca in lista:
+
+        new = []
+        
+        for numero in peca:
+            convert = '\033[1;3{}m{}\033[m'.format((numero+1),numero)
+            new.append(convert)
+        
+        print ('{}|{}   '.format(new[0], new[1]), end="")
+
+    print('\n')
+
+    for i in range(0, len(lista)):
+
+        print(' \033[;1m{}\033[m    '.format(i), end="")
+
+    print('\n')
+
+
+def formatador2(lista):
+
+    print('\n')
+
+    for peca in lista:
+
+        new = []
+        
+        for numero in peca:
+            convert = '\033[1;3{}m{}\033[m'.format((numero+1),numero)
+            new.append(convert)
+        
+        print ('{}|{}  '.format(new[0], new[1]), end="")
+
+    print('\n')
+
+
+def formatador3(peca):
+
+    new = []
+        
+    for numero in peca:
+        convert = '\033[1;3{}m{}\033[m'.format((numero+1),numero)
+        new.append(convert)
+        
+    print ('{}|{}'.format(new[0], new[1]), end="")
+
+
+
 #código cores
 #\033[1:31:40m vermelho fundo branco
 
@@ -128,13 +181,13 @@ print('\n')
 
 time.sleep(2)
 
-print('\n\033[1;31;47m------- O INCRÍVEL DOMINÓ -------\033[m')
+print('\033[1;31;47m------- O INCRÍVEL DOMINÓ -------\033[m')
 
 print('\n')
 
 time.sleep(2)
 
-print('\n\033[1;31;47m-------- VAMOS COMEÇAR! --------\033[m')
+print('\033[1;31;47m-------- VAMOS COMEÇAR! --------\033[m')
 
 time.sleep(2)
 
@@ -171,7 +224,9 @@ if jogador_inicial==0:
 
     time.sleep(2)
 
-    print('\nSuas peças: {}'.format(inicio1['jogadores'][jogador_inicial]))
+    print('\nSuas peças: ', end="")
+    
+    formatador(inicio1['jogadores'][jogador_inicial])
 
     time.sleep(2)
 
@@ -179,17 +234,17 @@ if jogador_inicial==0:
 
     time.sleep(2)
     
-    
-
     possiveis = posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][jogador_inicial])
-    
+
     if peca_a_ser_jogada not in possiveis:
         while peca_a_ser_jogada not in possiveis:
             peca_a_ser_jogada = int(input('\nEscolha entre as peças: '.format(possiveis)))-1
 
             time.sleep(2)
             
-    print('\nVocê jogou a peça {}'.format(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada]))
+    print('\nVocê jogou a peça: ', end="")
+    
+    formatador3(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada])
 
     time.sleep(2)
     
@@ -201,9 +256,11 @@ if jogador_inicial==0:
 
     print('\n-----------------------------------------------')
 
-    print('Mesa ---> {}'.format(inicio1['mesa']))  
+    print('MESA ---> ', end="")
+        
+    formatador2(inicio1['mesa'])
 
-    print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+    print('\nMONTE --> {} peças'.format(len(inicio1['monte'])))
 
     print('-----------------------------------------------')
 
@@ -217,7 +274,9 @@ else:
 
     inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada], inicio1['mesa'])
 
-    print('\nJogador {} jogou a peça {}'.format(jogador_inicial, inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada]))
+    print('\nJogador {} jogou a peça: '.format(jogador_inicial), end="")
+    
+    formatador3(inicio1['jogadores'][jogador_inicial][peca_a_ser_jogada])
 
     time.sleep(2)
 
@@ -225,9 +284,11 @@ else:
 
     print('\n-----------------------------------------------')
 
-    print('Mesa ---> {}'.format(inicio1['mesa']))
+    print('MESA ---> ', end="")
+        
+    formatador2(inicio1['mesa'])
 
-    print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+    print('\nMONTE --> {} peças'.format(len(inicio1['monte'])))
 
     print('------------------------------------------------')
 
@@ -253,11 +314,14 @@ while i<numero_jogadores:
 
         time.sleep(2)
 
-        print('\nSuas peças: {}'.format(inicio1['jogadores'][i]))
+        print('\nSuas peças: ', end="")
+        
+        formatador(inicio1['jogadores'][i])
 
         time.sleep(2)
 
         possiveis = posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][i])
+
         
         if len(possiveis)==0:
 
@@ -273,7 +337,9 @@ while i<numero_jogadores:
                 
                 pegou_do_monte = random.choice(inicio1['monte'])
 
-                print('\nVocê pegou a peça {}'.format(pegou_do_monte))
+                print('\nVocê pegou a peça: ')
+                
+                formatador3(pegou_do_monte)
 
                 time.sleep(2)
 
@@ -282,6 +348,8 @@ while i<numero_jogadores:
                 inicio1['monte'].remove(pegou_do_monte)
 
                 possiveis = posicoes_possiveis(inicio1['mesa'], inicio1['jogadores'][i])
+
+                possiveis = possiveis+1
 
                 if len(possiveis)==0:
 
@@ -301,7 +369,9 @@ while i<numero_jogadores:
 
                     inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][i][-1], inicio1['mesa'])
 
-                    print('\nVocê jogou a peça {}'.format(inicio1['jogadores'][i][-1]))
+                    print('\nVocê jogou a peça: ', end="")
+                    
+                    formatador3(inicio1['jogadores'][i][-1])
 
                     time.sleep(2)
                     
@@ -338,7 +408,9 @@ while i<numero_jogadores:
                 
             inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][i][peca_a_ser_jogada], inicio1['mesa'])
 
-            print('\nVocê jogou a peça {}'.format(inicio1['jogadores'][i][peca_a_ser_jogada]))
+            print('\nVocê jogou a peça: ', end="")
+            
+            formatador3(inicio1['jogadores'][i][peca_a_ser_jogada])
 
             time.sleep(2)
             
@@ -350,9 +422,11 @@ while i<numero_jogadores:
 
         print('\n-----------------------------------------------')
 
-        print('Mesa ---> {}'.format(inicio1['mesa']))  
+        print('MESA ---> ', end="")
+        
+        formatador2(inicio1['mesa'])
 
-        print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+        print('\nMONTE --> {} peças'.format(len(inicio1['monte'])))
 
         print('-----------------------------------------------')
 
@@ -404,7 +478,9 @@ while i<numero_jogadores:
 
                     inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][i][-1], inicio1['mesa'])
 
-                    print('\nJogador {} jogou a peça {}'.format(i, pegou_do_monte ))
+                    print('\nJogador {} jogou a peça:  '.format(i), end="")
+
+                    formatador3(pegou_do_monte)
 
                     time.sleep(2)
 
@@ -433,7 +509,9 @@ while i<numero_jogadores:
 
             inicio1['mesa'] = adiciona_na_mesa(inicio1['jogadores'][i][peca_a_ser_jogada], inicio1['mesa'])
 
-            print('\nJogador {} jogou a peça {}'.format(i, inicio1['jogadores'][i][peca_a_ser_jogada]))
+            print('\nJogador {} jogou a peça: '.format(i), end="")
+            
+            formatador3(inicio1['jogadores'][i][peca_a_ser_jogada])
 
             time.sleep(2)
 
@@ -446,9 +524,11 @@ while i<numero_jogadores:
 
         print('\n-----------------------------------------------')
 
-        print('Mesa ---> {}'.format(inicio1['mesa']))  
+        print('MESA ---> ')
+        
+        formatador2(inicio1['mesa'])
 
-        print('\nMonte --> {} peças'.format(len(inicio1['monte'])))
+        print('\nMONTE --> {} peças'.format(len(inicio1['monte'])))
 
         print('-----------------------------------------------')
 
